@@ -8,7 +8,7 @@ import my.com.iotassignment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val database = Firebase.database
-    val ref = database.getReference("smartSecurity")
+    val ref = database.getReference("tripWire")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -24,15 +24,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendToFirebasePls() {
-        var text = binding.edtName.text.toString().trim().uppercase()
+        var text = binding.edtLight.text.toString().trim()
+        var text2 = binding.edtSound.text.toString().trim()
 
-        ref.child("tripWire")
+        ref.child("light")
             .setValue(text)
+        ref.child("sound")
+            .setValue(text2)
 
-        ref.child("tripWire")
+        ref.child("light")
             .get()
             .addOnSuccessListener {
                 binding.txtTest.text = it.value.toString()
+            }
+        ref.child("sound")
+            .get()
+            .addOnSuccessListener {
+                binding.txtTest2.text = it.value.toString()
             }
     }
 
