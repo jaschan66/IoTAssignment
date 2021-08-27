@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "199285098582",
+    "firebase_url": "https://iot-testing-2-27f2f-default-rtdb.firebaseio.com",
+    "project_id": "iot-testing-2-27f2f",
+    "storage_bucket": "iot-testing-2-27f2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199285098582:android:8118c97355199d474e13f7",
+        "android_client_info": {
+          "package_name": "my.com.iotassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199285098582-fpfr4tb40aa6fvnotvmtc56sm6b6m3l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSyU9sC9S7iGhf6aBX6F3GZlPz6p8gPaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199285098582-fpfr4tb40aa6fvnotvmtc56sm6b6m3l8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
