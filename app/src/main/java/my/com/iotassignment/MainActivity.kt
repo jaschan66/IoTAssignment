@@ -18,8 +18,6 @@ import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 
-
-
     private lateinit var binding: ActivityMainBinding
     val database = Firebase.database
     val ref = database.getReference("tripWire")
@@ -46,15 +44,15 @@ class MainActivity : AppCompatActivity() {
 
                 if (trippedVal == "1"){
                     binding.lblTrip.text = "Intruder Found"
-                    binding.lblTrip.setTextColor(Color.parseColor("#fc1c03"))
+                    binding.imgPhoto.setImageResource(R.drawable.danger)
+                    binding.lblTrip.setTextColor(Color.parseColor("#EC3F2C"))
 
                 }
                 else{
                     binding.lblTrip.text = "No Intruder Found"
-                    binding.lblTrip.setTextColor(Color.parseColor("#4CAF50"))
+                    binding.imgPhoto.setImageResource(R.drawable.safe)
+                    binding.lblTrip.setTextColor(Color.parseColor("#FF03DAC5"))
                 }
-
-
 
             }
 
@@ -66,17 +64,16 @@ class MainActivity : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(getData)
 
 
-
-
-
         binding.tripSW.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 ref.child("tripwire")
                     .setValue("ON")
+                toast("Tripwire armed.")
             }
             else {
                 ref.child("tripwire")
                     .setValue("OFF")
+                toast("Tripwire disarmed.")
             }
         }
 
@@ -98,8 +95,6 @@ class MainActivity : AppCompatActivity() {
                 applyText() }
 
         // binding.edtMessage.text.toString().trim()
-
-
 
 
     }
