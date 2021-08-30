@@ -11,4 +11,6 @@
     <color name="red">#fc1c03</color>
     <color name="dark_blue">#062645</color>
     <color name="teal">#00FFE6</color>
+    <color name="darkGray">#333533</color>
+    <color name="lightGray">#EEE</color>
 </resources>
