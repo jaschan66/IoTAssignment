@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IoTAssignment">
         <activity
+            android:name=".SmartDoor"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".SmartDoor"
+            android:name=".MotVibSensor"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

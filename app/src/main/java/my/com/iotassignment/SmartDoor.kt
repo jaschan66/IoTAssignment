@@ -48,10 +48,9 @@ class SmartDoor : AppCompatActivity(){
 
                 var doorLVal = snapshot.child("doorLock").value
                 var iLockVal = snapshot.child("iLock").value
-//                var trippedVal = snapshot.child("tripped").value
-                var lcdMessageVal = snapshot.child("lcdMessage").value
+//
 
-                sb.append("$lcdMessageVal")
+
               //  binding.edtMessage.setText(sb)
 
                 binding.swManual.isChecked = doorLVal == "LOCKED"
