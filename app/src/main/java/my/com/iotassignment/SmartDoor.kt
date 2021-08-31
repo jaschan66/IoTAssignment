@@ -49,28 +49,33 @@ class SmartDoor : AppCompatActivity(){
                 var doorLVal = snapshot.child("doorLock").value
                 var iLockVal = snapshot.child("iLock").value
 //                var trippedVal = snapshot.child("tripped").value
-                var lcdMessageVal = snapshot.child("lcdMessage").value
+//                var lcdMessageVal = snapshot.child("lcdMessage").value
 
-                sb.append("$lcdMessageVal")
+//                sb.append("$lcdMessageVal")
               //  binding.edtMessage.setText(sb)
 
                 binding.swManual.isChecked = doorLVal == "LOCKED"
                 binding.swAuto.isChecked = iLockVal == "ENABLE"
 
-//                if (trippedVal == "1"){
-//
-//
-//                    sendNotification()
-//                    binding.lblTrip.text = "Intruder Found"
-//                    binding.imgPhoto.setImageResource(R.drawable.danger)
-//                    binding.lblTrip.setTextColor(Color.parseColor("#EC3F2C"))
-//
-//                }
-//                else{
-//                    binding.lblTrip.text = "No Intruder Found"
-//                    binding.imgPhoto.setImageResource(R.drawable.safe)
-//                    binding.lblTrip.setTextColor(Color.parseColor("#FF03DAC5"))
-//                }
+                if(iLockVal.toString() == "ENABLE"){
+                    binding.swManual.isEnabled = false
+                }
+                else{
+                    binding.swAuto.isEnabled = true
+                }
+                if (doorLVal.toString() == "UNLOCKED"){
+                    binding.lblDoorStatus.text = "UNLOCKED"
+                    binding.imgDoorStatus.setImageResource(R.drawable.unlocked)
+                    binding.lblDoorStatus.setTextColor(Color.parseColor("#EC3F2C"))
+
+                }
+                else{
+                    binding.lblDoorStatus.text = "LOCKED"
+                    binding.imgDoorStatus.setImageResource(R.drawable.locked)
+                    binding.lblDoorStatus.setTextColor(Color.parseColor("#FF03DAC5"))
+                }
+
+
 
             }
 
