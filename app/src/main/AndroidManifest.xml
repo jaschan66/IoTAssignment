@@ -10,14 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IoTAssignment">
         <activity
+            android:name=".SmartDoor"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".SmartDoor"
+            android:name=".SmartGuard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
