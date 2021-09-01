@@ -1,5 +1,6 @@
 package my.com.iotassignment
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -17,10 +18,13 @@ class MotVibSensor : AppCompatActivity() {
     val ref = database.getReference("motionSensor")
     private lateinit var binding : ActivityMotVibSensorBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMotVibSensorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnBackMotion.setOnClickListener { backToSmartGuard() }
 
         var getData = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -68,6 +72,10 @@ class MotVibSensor : AppCompatActivity() {
 
     }
 
+    private fun backToSmartGuard() {
+        val intent = Intent (this, SmartGuard::class.java)
+        startActivity(intent)
+    }
 
     private fun toast(s: String) {
         Toast.makeText(this,s, Toast.LENGTH_SHORT).show()

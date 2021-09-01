@@ -7,6 +7,19 @@
     android:background="#1E2B5A"
     tools:context=".MotVibSensor">
 
+    <Button
+        android:id="@+id/btnBackMotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/roundedge"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/btnOffBuzzer" />
+
     <TextView
         android:id="@+id/lblMotionStatus"
         android:layout_width="wrap_content"
@@ -81,7 +94,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/roundedge"
-        android:enabled="false"
         android:text="Disarm"
         android:textColor="@color/black"
         android:textSize="16sp"
