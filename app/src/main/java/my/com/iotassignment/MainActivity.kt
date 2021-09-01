@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(getData)
 
 
-        binding.tripSW.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.tripSW.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 ref.child("tripwire")
                     .setValue("ON")
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.buzzSW.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.buzzSW.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 ref.child("buzz")
                     .setValue("ON")

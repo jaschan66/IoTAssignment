@@ -45,7 +45,6 @@ class SmartDoor : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 var sb = StringBuilder()
-
                 var doorLVal = snapshot.child("doorLock").value
                 var iLockVal = snapshot.child("iLock").value
 //                var trippedVal = snapshot.child("tripped").value
@@ -67,7 +66,6 @@ class SmartDoor : AppCompatActivity(){
                     binding.lblDoorStatus.text = "UNLOCKED"
                     binding.imgDoorStatus.setImageResource(R.drawable.unlocked)
                     binding.lblDoorStatus.setTextColor(Color.parseColor("#EC3F2C"))
-
                 }
                 else{
                     binding.lblDoorStatus.text = "LOCKED"
@@ -86,17 +84,17 @@ class SmartDoor : AppCompatActivity(){
         ref.addValueEventListener(getData)
         ref.addListenerForSingleValueEvent(getData)
 
-        binding.swManual.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.swManual.setOnCheckedChangeListener { _, isChecked ->
             binding.swAuto.isEnabled = !binding.swManual.isChecked
             if (isChecked){
-                ref.child("doorLock")
-                    .setValue("LOCKED")
-                toast("Door Locked.")
+                ref.child("doorEnable")
+                    .setValue("ON")
+                toast("Door Locked Enable.")
             }
             else {
-                ref.child("doorLock")
-                    .setValue("UNLOCKED")
-                toast("Door Unlocked.")
+                ref.child("doorEnable")
+                    .setValue("OFF")
+                toast("Door Locked Disable.")
             }
 
         }
