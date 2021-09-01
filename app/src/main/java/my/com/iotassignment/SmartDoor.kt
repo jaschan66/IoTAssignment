@@ -41,12 +41,13 @@ class SmartDoor : AppCompatActivity(){
         binding = ActivitySmartDoorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBackDoor.setOnClickListener { backToSmartGuard() }
+
 
         var getData = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 var sb = StringBuilder()
+                var doorEval = snapshot.child("doorEnable").value
                 var doorLVal = snapshot.child("doorLock").value
                 var iLockVal = snapshot.child("iLock").value
 //                var trippedVal = snapshot.child("tripped").value
@@ -55,7 +56,7 @@ class SmartDoor : AppCompatActivity(){
 //                sb.append("$lcdMessageVal")
               //  binding.edtMessage.setText(sb)
 
-                binding.swManual.isChecked = doorLVal == "LOCKED"
+                binding.swManual.isChecked = doorEval == "ON"
                 binding.swAuto.isChecked = iLockVal == "ENABLE"
 
 //                if(iLockVal.toString() == "ENABLE"){
@@ -86,9 +87,36 @@ class SmartDoor : AppCompatActivity(){
         }
         ref.addValueEventListener(getData)
         ref.addListenerForSingleValueEvent(getData)
+        binding.btnBackDoor.setOnClickListener { backToSmartGuard() }
+
+
+        binding.swAuto.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                binding.swManual.isEnabled = false
+            }
+            else{
+                binding.swManual.isEnabled = true
+            }
+            if (isChecked){
+                ref.child("iLock")
+                    .setValue("ENABLE")
+                toast("I-Lock Enable.")
+            }
+            else {
+                ref.child("iLock")
+                    .setValue("DISABLE")
+                toast("I-Lock Disable.")
+            }
+        }
+
 
         binding.swManual.setOnCheckedChangeListener { _, isChecked ->
-            binding.swAuto.isEnabled = !binding.swManual.isChecked
+            if(isChecked){
+                binding.swAuto.isEnabled = false
+            }
+            else{
+                binding.swAuto.isEnabled = true
+            }
             if (isChecked){
                 ref.child("doorEnable")
                     .setValue("ON")
@@ -100,21 +128,6 @@ class SmartDoor : AppCompatActivity(){
                 toast("Door Locked Disable.")
             }
 
-        }
-
-
-        binding.swAuto.setOnCheckedChangeListener { _, isChecked ->
-            binding.swManual.isEnabled = !binding.swAuto.isChecked
-            if (isChecked){
-                ref.child("iLock")
-                    .setValue("ENABLE")
-                toast("I-Lock Enable.")
-            }
-            else {
-                ref.child("iLock")
-                    .setValue("DISABLE")
-                toast("I-Lock Disable.")
-            }
         }
 
     }
