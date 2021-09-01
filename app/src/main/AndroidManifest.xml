@@ -19,6 +19,9 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
+            android:name=".MotVibSensor"
+            android:exported="true" />
+        <activity
             android:name=".SmartGuard"
             android:exported="true" >
             <intent-filter>

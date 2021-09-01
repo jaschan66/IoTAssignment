@@ -7,6 +7,20 @@
     android:background="#1E2B5A"
     tools:context=".SmartDoor">
 
+    <Button
+        android:id="@+id/btnBackDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/roundedge"
+        android:enabled="false"
+        android:text="back"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/swAuto" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"

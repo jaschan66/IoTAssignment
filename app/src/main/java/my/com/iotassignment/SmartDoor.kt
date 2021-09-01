@@ -1,6 +1,7 @@
 package my.com.iotassignment
 
 import android.app.*
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,6 +41,7 @@ class SmartDoor : AppCompatActivity(){
         binding = ActivitySmartDoorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBackDoor.setOnClickListener { backToSmartGuard() }
 
         var getData = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -56,12 +58,13 @@ class SmartDoor : AppCompatActivity(){
                 binding.swManual.isChecked = doorLVal == "LOCKED"
                 binding.swAuto.isChecked = iLockVal == "ENABLE"
 
-                if(iLockVal.toString() == "ENABLE"){
-                    binding.swManual.isEnabled = false
-                }
-                else{
-                    binding.swAuto.isEnabled = true
-                }
+//                if(iLockVal.toString() == "ENABLE"){
+//                    binding.swManual.isEnabled = false
+//                }
+//                else{
+//                    binding.swAuto.isEnabled = true
+//                }
+
                 if (doorLVal.toString() == "UNLOCKED"){
                     binding.lblDoorStatus.text = "UNLOCKED"
                     binding.imgDoorStatus.setImageResource(R.drawable.unlocked)
@@ -116,10 +119,10 @@ class SmartDoor : AppCompatActivity(){
 
     }
 
-
-
-
-
+    private fun backToSmartGuard() {
+        val intent = Intent (this, SmartGuard::class.java)
+        startActivity(intent)
+    }
 
     private fun toast(s: String) {
         Toast.makeText(this,s, Toast.LENGTH_SHORT).show()

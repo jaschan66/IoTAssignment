@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         createNotificationChannel()
+        binding.btnBackTrip.setOnClickListener { backToSmartGuard() }
 
 
         var getData = object : ValueEventListener {
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
                 binding.tripSW.isChecked = tripVal == "ON"
                 binding.buzzSW.isChecked = buzzVal == "ON"
+
 
                 if (trippedVal == "1"){
 
@@ -113,6 +115,11 @@ class MainActivity : AppCompatActivity() {
         // binding.edtMessage.text.toString().trim()
 
 
+    }
+
+    private fun backToSmartGuard() {
+        val intent = Intent (this, SmartGuard::class.java)
+        startActivity(intent)
     }
 
     private fun createNotificationChannel() {

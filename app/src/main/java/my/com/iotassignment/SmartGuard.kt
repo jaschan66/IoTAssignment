@@ -16,12 +16,19 @@ class SmartGuard : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnToSmartDoor.setOnClickListener { navigateToSmartDoor() }
+        binding.btnToSmartSensor.setOnClickListener { navigateToMotVibSensor() }
         binding.btntoSmartDetector.setOnClickListener { navigateToSmartDetector() }
+
 
     }
 
+
     private fun navigateToSmartDetector() {
         val intent = Intent (this, MainActivity::class.java)
+        startActivity(intent)
+    }
+    private fun navigateToMotVibSensor() {
+        val intent = Intent (this, MotVibSensor::class.java)
         startActivity(intent)
     }
 
@@ -29,4 +36,5 @@ class SmartGuard : AppCompatActivity() {
         val intent = Intent(this, SmartDoor::class.java)
         startActivity(intent)
     }
+
 }
