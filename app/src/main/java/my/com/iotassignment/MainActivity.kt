@@ -49,15 +49,19 @@ class MainActivity : AppCompatActivity() {
                 var buzzVal = snapshot.child("buzz").value
                 var trippedVal = snapshot.child("tripped").value
                 var lcdMessageVal = snapshot.child("lcdMessage").value
+                var nightModeVal = snapshot.child("nightMode").value
 
                 sb.append("$lcdMessageVal")
-                binding.edtMessage.setText(sb)
+//                binding.edtMessage.setText(sb)
 
-                binding.tripSW.isChecked = tripVal == "ON"
+                binding.tripSW.isChecked = tripVal == "ARMED"
                 binding.buzzSW.isChecked = buzzVal == "ON"
+                binding.nightSW.isChecked = nightModeVal == "ENABLED"
 
 
                 if (trippedVal == "1"){
+                    binding.buzzSW.isChecked = true
+                    binding.buzzSW.isEnabled = true
 
 
                     sendNotification()
@@ -67,10 +71,21 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 else{
+                    binding.buzzSW.isEnabled = false
+                    binding.buzzSW.isChecked = false
                     binding.lblTrip.text = "No Intruder Found"
                     binding.imgPhoto.setImageResource(R.drawable.safe)
                     binding.lblTrip.setTextColor(Color.parseColor("#FF03DAC5"))
                 }
+
+                if(tripVal == "DISARMED"){
+                    binding.nightSW.isEnabled = true
+                }
+                else{
+                    binding.nightSW.isEnabled = false
+                }
+
+
 
             }
 
@@ -85,32 +100,55 @@ class MainActivity : AppCompatActivity() {
         binding.tripSW.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 ref.child("tripwire")
-                    .setValue("ON")
+                    .setValue("ARMED")
                 toast("Tripwire armed.")
             }
             else {
+                binding.tripSW.setTextColor(getColor(R.color.black))
                 ref.child("tripwire")
-                    .setValue("OFF")
+                    .setValue("DISARMED")
+//                ref.child("nightMode")
+//                    .setValue("ENABLED")
                 toast("Tripwire disarmed.")
             }
         }
 
+
+
         binding.buzzSW.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-                ref.child("buzz")
-                    .setValue("ON")
+
             }
-            else {
+            else{
                 ref.child("buzz")
                     .setValue("OFF")
+                ref.child("tripped")
+                    .setValue("0")
+                ref.child("tripwire")
+                    .setValue("DISARMED")
+                ref.child("nightMode")
+                    .setValue("DISABLED")
             }
         }
 
-            binding.btnApply.setOnClickListener {
-                if (binding.edtMessage.text.isEmpty())
-                   toast("The alert message cannot be empty")
-                else
-                applyText() }
+        binding.nightSW.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked){
+                ref.child("nightMode")
+                    .setValue("ENABLED")
+                binding.tripSW.isEnabled = false
+            }
+            else {
+                ref.child("nightMode")
+                    .setValue("DISABLED")
+                binding.tripSW.isEnabled = true
+            }
+        }
+
+//            binding.btnApply.setOnClickListener {
+//                if (binding.edtMessage.text.isEmpty())
+//                   toast("The alert message cannot be empty")
+//                else
+//                applyText() }
 
         // binding.edtMessage.text.toString().trim()
 
@@ -165,11 +203,11 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,s,Toast.LENGTH_SHORT).show()
     }
 
-    private fun applyText() {
-        var text = binding.edtMessage.text.toString().trim()
-        ref.child("lcdMessage")
-            .setValue(text)
-    }
+//    private fun applyText() {
+//        var text = binding.edtMessage.text.toString().trim()
+//        ref.child("lcdMessage")
+//            .setValue(text)
+//    }
 
 /*Below code i think should be implement on arduino side rather than here
     private fun sendToFirebasePls() {

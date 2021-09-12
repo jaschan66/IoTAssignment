@@ -7,20 +7,66 @@
     android:background="#1E2B5A"
     tools:context=".MainActivity">
 
+    <Switch
+        android:id="@+id/nightSW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:checked="false"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:thumbTint="@color/teal_200"
+        android:trackTint="#00FFE6"
+        android:trackTintMode="screen"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/buzzSW"
+        tools:checked="false"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Switch
+        android:id="@+id/buzzSW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:checked="false"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:thumbTint="@color/teal_200"
+        android:trackTint="#00FFE6"
+        android:trackTintMode="screen"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tripSW"
+        tools:checked="false"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Night Mode"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nightSW"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/nightSW" />
+
     <Button
         android:id="@+id/btnBackTrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="10dp"
+
         android:layout_marginTop="28dp"
         android:background="@drawable/roundedge"
         android:text="Back"
         android:textAllCaps="false"
-
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/edtMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/nightSW" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -28,22 +74,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="182dp" />
-
-    <EditText
-        android:id="@+id/edtMessage"
-        android:layout_width="133dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Intruder Alert ..."
-        android:inputType="textPersonName"
-        android:maxLength="14"
-        android:textColor="@color/white"
-        android:textColorHint="#8C8B8B"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/buzzSW"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -85,56 +115,8 @@
         android:text="Alarm"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buzzSW"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Message (max 14 char)"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edtMessage"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/edtMessage"
-        app:layout_constraintVertical_bias="0.444" />
-
-    <Switch
-        android:id="@+id/buzzSW"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
-        android:checked="false"
-        android:textOff="OFF"
-        android:textOn="ON"
-        android:thumbTint="@color/teal_200"
-        android:trackTint="#00FFE6"
-        android:trackTintMode="screen"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/tripSW"
-        tools:checked="false"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/btnApply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/roundedge"
-
-        android:text="Apply"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnBackTrip"
-        app:layout_constraintTop_toBottomOf="@+id/edtMessage" />
 
     <ImageView
         android:id="@+id/imgPhoto"
